@@ -4,7 +4,6 @@
 [![Docker Pulls](https://img.shields.io/docker/pulls/wodby/httpd.svg)](https://hub.docker.com/r/wodby/httpd)
 [![Docker Stars](https://img.shields.io/docker/stars/wodby/httpd.svg)](https://hub.docker.com/r/wodby/httpd)
 [![Docker Layers](https://images.microbadger.com/badges/image/wodby/httpd.svg)](https://microbadger.com/images/wodby/httpd)
-[![Wodby Slack](http://slack.wodby.com/badge.svg)](http://slack.wodby.com)
 
 This repository is a fork of https://github.com/docker-library/httpd with a few changes:
 
@@ -22,4 +21,3 @@ This repository is a fork of https://github.com/docker-library/httpd with a few 
 Supported tags and respective `Dockerfile` links:
 
 * `2.4.29`, `latest` [_(Dockerfile)_](https://github.com/wodby/httpd/tree/master/2.4/alpine/Dockerfile.wodby)
-* `2.2.34` [_(Dockerfile)_](https://github.com/wodby/httpd/tree/master/2.2/alpine/Dockerfile.wodby)
