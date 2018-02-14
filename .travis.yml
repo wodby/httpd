@@ -11,7 +11,7 @@ env:
 
 script:
   - cd ./"${APACHE_VER:0:3}"/alpine
-  - make
+  - travis_retry make
 
 after_success:
   - ./travis-release.sh
