@@ -44,8 +44,8 @@ RUN apt-get update \
 		libxml2 \
 	&& rm -r /var/lib/apt/lists/*
 
-ENV HTTPD_VERSION 2.4.29
-ENV HTTPD_SHA256 777753a5a25568a2a27428b2214980564bc1c38c1abf9ccc7630b639991f7f00
+ENV HTTPD_VERSION 2.4.33
+ENV HTTPD_SHA256 de02511859b00d17845b9abdd1f975d5ccb5d0b280c567da5bf2ad4b70846f05
 
 # https://httpd.apache.org/security/vulnerabilities_24.html
 ENV HTTPD_PATCHES=""
@@ -87,7 +87,7 @@ RUN set -eux; \
 		local success=; \
 		local distUrl=; \
 		for distUrl in $APACHE_DIST_URLS; do \
-			if wget -O "$f" "$distUrl$distFile"; then \
+			if wget -O "$f" "$distUrl$distFile" && [ -s "$f" ]; then \
 				success=1; \
 				break; \
 			fi; \
@@ -101,7 +101,14 @@ RUN set -eux; \
 # see https://httpd.apache.org/download.cgi#verify
 	ddist 'httpd.tar.bz2.asc' "httpd/httpd-$HTTPD_VERSION.tar.bz2.asc"; \
 	export GNUPGHOME="$(mktemp -d)"; \
-	gpg --keyserver ha.pool.sks-keyservers.net --recv-keys A93D62ECC3C8EA12DB220EC934EA76E6791485A8; \
+	for key in \
+# gpg: key 791485A8: public key "Jim Jagielski (Release Signing Key) <jim@apache.org>" imported
+		A93D62ECC3C8EA12DB220EC934EA76E6791485A8 \
+# gpg: key 995E35221AD84DFF: public key "Daniel Ruggeri (http://home.apache.org/~druggeri/) <druggeri@apache.org>" imported
+		B9E8213AEFB861AF35A41F2C995E35221AD84DFF \
+	; do \
+		gpg --keyserver ha.pool.sks-keyservers.net --recv-keys "$key"; \
+	done; \
 	gpg --batch --verify httpd.tar.bz2.asc httpd.tar.bz2; \
 	rm -rf "$GNUPGHOME" httpd.tar.bz2.asc; \
 	\
