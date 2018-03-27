@@ -5,19 +5,13 @@ services:
 
 env:
   global:
-    - LATEST_TAG=2.4.29
+    - LATEST_TAG=2.4.33
   matrix:
-    - APACHE_VER=2.4.29 TAG=2.4.29
+    - TAG=2.4.33 APACHE_VER=2.4.33
 
 script:
   - cd ./"${APACHE_VER:0:3}"/alpine
   - travis_retry make
 
 after_success:
-  - bash "${TRAVIS_BUILD_DIR}/travis-release.sh"
-
-notifications:
-  slack:
-    on_success: always
-    secure: |
-      OvMmlq3dGMtpXuNp8bdMnYZjHISDU53AxJe6tswFNHkRlcdTlnT10lWFd3B+DdBOk8YqrEy1FLkdKpaBtHwiinnVSfrVjmwQwHMTbLZkpSWDPYWILSFu+Y/6Las4rAIjy6gbsqiZLqc4phisJFhLxeg+BJnii6q++VHp4oWf0zqeXx5H18gPWMRUtp50+FakyQWUX91F7IB/FZ2wDTpYUMANDgVNPhqiqs76Cz4JQZkzPsstLNcyzbxwBceqhWf3K30VvyTunG9lv/kSeM0qNO0yCl2UcoQ9aRhF64A5SeoeszNgM3yO+JzFjCP8Jr3TOgiMB72l5RFM1PGMHqw4EMm7ewE5M/79B5HT3PJ2+EwR16a0z+H7hyPGnlRX5pjnHXnezPN5VYpjO2+FheMF7j4lRji5CzLiPbVgsHyz2hF/54kKTm5zQx9EPNpD0UGns4PdqKzCI2YSLsW5Q8Gf5Jw1sge+0mxA+L3dZrZLhI4wucuWyCOxX90oDjUTKVNq6PvJ4zg2mt1s0fENTjjKP94pUw3ocw8HThD/j5pbjlBDnPJeiWpKiU6E2FwUyWX8nZp31KlFTIKYn6iQu0+6K8iXZozta0HfZjlsUCDSAXhuxPyxid+zsBpQBAJ6w1qsr4oBGULvKqraxby+ZrH3z9bt7SvXd0zfGTLF8NTi7VM=
+  - . "${TRAVIS_BUILD_DIR}/travis_release"

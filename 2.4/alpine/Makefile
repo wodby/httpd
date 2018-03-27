@@ -1,8 +1,10 @@
 -include env_make
 
-TAG ?= 2.4.29
+APACHE_VER ?= 2.4.33
+
+TAG ?= $(APACHE_VER)
 REPO = wodby/httpd
-NAME = httpd-2.4.29
+NAME = httpd-$APACHE_VER()
 
 .PHONY: build test push shell run start stop logs clean release
 
