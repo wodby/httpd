@@ -1,17 +1,23 @@
 -include env_make
 
-APACHE_VER ?= 2.4.34
-
 TAG ?= $(APACHE_VER)
 REPO = wodby/httpd
 NAME = httpd-$APACHE_VER()
+
+ifeq ($(BASE_IMAGE_STABILITY_TAG),)
+    BASE_IMAGE_TAG := $(ALPINE_VER)
+else
+    BASE_IMAGE_TAG := $(ALPINE_VER)-$(BASE_IMAGE_STABILITY_TAG)
+endif
 
 .PHONY: build test push shell run start stop logs clean release
 
 default: build
 
 build:
-	docker build -t $(REPO):$(TAG) -f Dockerfile.wodby ./
+	docker build -t $(REPO):$(TAG) \
+		-f Dockerfile.wodby \
+		--build-arg BASE_IMAGE_TAG=$(BASE_IMAGE_TAG) ./
 
 test:
 	IMAGE=$(REPO):$(TAG) ./test.sh

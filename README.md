@@ -9,7 +9,6 @@ This repository is a fork of https://github.com/docker-library/httpd with a few 
 
 * Only alpine-based images
 * All images are based on latest stable alpine version ([wodby/alpine](https://github.com/wodby/alpine))
-* Compiled with mpm event
 
 ## Docker Images
 

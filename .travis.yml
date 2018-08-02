@@ -4,7 +4,10 @@ services:
   - docker
 
 env:
-    - APACHE_VER=2.4.34 TAGS=2.4.34,latest
+  global:
+    - BASE_IMAGE_STABILITY_TAG=2.1.0
+  matrix:
+    - APACHE_VER=2.4.34 ALPINE_VER=3.8 TAGS=2.4.34,latest
 
 script:
   - cd ./"${APACHE_VER:0:3}"/alpine
