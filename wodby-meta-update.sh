@@ -12,6 +12,7 @@ fullVersion=$(grep -oP '(?<=^ENV HTTPD_VERSION )([0-9\.]+)' 2.4/alpine/Dockerfil
 minorVersion=$(echo "${fullVersion}" | grep -oE '^[0-9]+\.[0-9]+')
 
 # Update travis.yml
-sed -i -E "s/(APACHE_VER)=${minorVersion}\.[0-9]+/\1=${fullVersion}/" .travis.yml
+sed -i -E "s/(APACHE_VER)=${minorVersion//\./\\.}\.[0-9]+/\1=${fullVersion}/" .travis.yml
+sed -i -E "s/(TAGS)=${minorVersion//\./\\.}\.[0-9]+/\1=${fullVersion}/" .travis.yml
 # Update README.
-sed -i -E "s/\`${minorVersion}\.[0-9]+\`/\`${fullVersion}\`/" README.md
+sed -i -E "s/\`${minorVersion//\./\\.}\.[0-9]+\`/\`${fullVersion}\`/" README.md
