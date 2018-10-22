@@ -19,4 +19,4 @@ This repository is a fork of https://github.com/docker-library/httpd with a few 
 
 Supported tags and respective `Dockerfile` links:
 
-* `2.4.35`, `2.4`, `2`, `latest` [_(Dockerfile)_](https://github.com/wodby/httpd/tree/master/2.4/alpine/Dockerfile.wodby)
+* `2.4.37`, `2.4`, `2`, `latest` [_(Dockerfile)_](https://github.com/wodby/httpd/tree/master/2.4/alpine/Dockerfile.wodby)
