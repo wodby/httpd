@@ -1,6 +1,8 @@
 -include env_make
 
 TAG ?= $(APACHE_VER)
+ALPINE_VER ?= 3.9
+
 REPO = wodby/httpd
 NAME = httpd-$APACHE_VER()
 
